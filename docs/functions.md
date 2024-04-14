@@ -23,7 +23,8 @@
 
 ## 2. Диаграмма вариантов
 
-![image](https://github.com/antonsemykin/-rep/assets/159423366/de91074f-bea8-4444-b351-7b2cfa61a5f6)
+![photo_2024-04-14_21-30-17](https://github.com/antonsemykin/-rep/assets/159423366/ed3fdb8b-e5af-423e-8de7-94d0dcfdd111)
+
 
 
 Дополнительную информацию о функциональных моделях можно найти в файле [docs/functions.md](docs/functions.md).
