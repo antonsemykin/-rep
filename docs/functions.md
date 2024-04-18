@@ -28,8 +28,7 @@
 
 ## 3. Диаграмма активности
 
-![photo_2024-04-14_21-30-17](https://github.com/antonsemykin/-rep/assets/159423366/ed3fdb8b-e5af-423e-8de7-94d0dcfdd111)
-
+![image](https://github.com/antonsemykin/-rep/assets/159423366/2c224c61-a404-4b69-9d25-d91995fae066)
 
 
 Дополнительную информацию о функциональных моделях можно найти в файле [docs/functions.md](docs/functions.md).
