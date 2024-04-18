@@ -30,10 +30,16 @@
 
 ### Диаграмма атаки персонажа
 ![image](https://github.com/antonsemykin/-rep/assets/159423366/2c224c61-a404-4b69-9d25-d91995fae066)
+
 ### Диаграмма бонусов
 ![image](https://github.com/antonsemykin/-rep/assets/159423366/5e98f160-b7a3-41d6-8b94-d9b716bbf0e5)
+
 ### Диаграмма атаки монстров
 
-### Диаграмма генерации карты
 
-Дополнительную информацию о функциональных моделях можно найти в файле [docs/functions.md](docs/functions.md).
+### Диаграмма процесса игры
+![image](https://github.com/antonsemykin/-rep/assets/159423366/48372ff4-1414-4858-87e4-ed099372937c)
+
+---
+
+#### Дополнительную информацию о функциональных моделях можно найти в файле [docs/functions.md](docs/functions.md).
