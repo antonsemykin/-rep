@@ -26,7 +26,7 @@
 ![image_2024-04-18_10-13-28](https://github.com/antonsemykin/-rep/assets/159423366/ed488d3a-4419-465e-811a-621201c84f5d)
 
 
-## 3. Диаграмма активности
+## 3. Диаграммы активности
 
 ### Диаграмма атаки персонажа
 ![image](https://github.com/antonsemykin/-rep/assets/159423366/2c224c61-a404-4b69-9d25-d91995fae066)
@@ -35,7 +35,7 @@
 ![image](https://github.com/antonsemykin/-rep/assets/159423366/5e98f160-b7a3-41d6-8b94-d9b716bbf0e5)
 
 ### Диаграмма атаки монстров
-
+![image](https://github.com/antonsemykin/-rep/assets/159423366/848e8310-d96d-42fe-83a6-fd16c3e0f286)
 
 ### Диаграмма процесса игры
 ![image](https://github.com/antonsemykin/-rep/assets/159423366/48372ff4-1414-4858-87e4-ed099372937c)
