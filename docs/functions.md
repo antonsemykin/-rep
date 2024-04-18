@@ -23,6 +23,11 @@
 
 ## 2. Диаграмма вариантов
 
+![image_2024-04-18_10-13-28](https://github.com/antonsemykin/-rep/assets/159423366/ed488d3a-4419-465e-811a-621201c84f5d)
+
+
+## 3. Диаграмма активности
+
 ![photo_2024-04-14_21-30-17](https://github.com/antonsemykin/-rep/assets/159423366/ed3fdb8b-e5af-423e-8de7-94d0dcfdd111)
 
 
