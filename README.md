@@ -38,4 +38,4 @@
 ## Функциональные модели
 
 ## Функциональные модели
-docs/functions.md
+-rep/docs/functions.md
