@@ -367,7 +367,7 @@ def won_screen():
 
     won_game = font.render(txt_win, True, BLACK)
     won_game_2 = font.render(txt_win_2, True, BLACK)
-    won_game_3 = font.render(txt_win_3, True, BLUE)
+    won_game_3 = font2.render(txt_win_3, True, BLUE)
 
     screen.blits([[won_game, (10, 300)], [won_game_2, (10, 332)], [won_game_3, (350, 200)]])
 
@@ -381,17 +381,21 @@ def won_screen():
 
 def death_screen():
     """Этот экран появится при смерти"""
-    global attempts, fill, coins
+    global attempts, fill, coins, progress_colors
     coins = 0
-    fill = 0
+    
     player_sprite.clear(player.image, screen)
     attempts += 1
     game_over = font.render("[SPACE] - играть снова, ESC - выход", True, WHITE)
-    game_over_2 = font.render("YOU LOSE", True, RED)
+    game_over_2 = font2.render("YOU LOSE", True, RED)
+
+    txt_gameover3 = f"{int(fill/8)-1}%"
+    game_over_3 = font2.render(txt_gameover3, True, progress_colors[int(fill / 175)])
 
     screen.fill(pygame.Color("sienna1"))
-    screen.blits([[game_over, (190, 350)], [tip, (220, 450)], [game_over_2, (340, 200)]])
+    screen.blits([[game_over, (190, 350)], [tip, (220, 450)], [game_over_2, (330, 200)], [game_over_3, (375, 250)]])
 
+    fill = 0
     wait_for_key()
     reset()
 
@@ -436,7 +440,7 @@ def start_screen():
         level_memo = font.render(f"Выбранный уровень - {level + 1}", True, (255, 255, 0))
         screen.blit(level_memo, (100, 150))
 
-        gamestart = font.render(f"[SPACE] - НАЧАТЬ ИГРУ", True, RED)
+        gamestart = font2.render(f"[SPACE] - НАЧАТЬ ИГРУ", True, RED)
         screen.blit(gamestart, (100, 300))
 
 def reset():
@@ -467,12 +471,13 @@ def draw_stats(surf, money=0):
     отображает индикатор выполнения уровня(полоска свверху), количество попыток, отображает собранные монеты
     и постепенно меняет цвет индикатора выполнения
     """
-    global fill
+    global fill, progress_colors
     progress_colors = [pygame.Color("red"), pygame.Color("orange"), pygame.Color("yellow"), pygame.Color("lightgreen"),
                        pygame.Color("green"), pygame.Color("BLUE"), pygame.Color("pink")]
 
-    tries = font.render(f" Количество попыток {str(attempts)}", True, WHITE)
-    BAR_LENGTH = 385
+    tries = font.render(f"Попытки - {str(attempts)}", True, WHITE)
+    itcoins = font.render(f"Монеты - {coins}", True, WHITE)
+    BAR_LENGTH = 800
     BAR_HEIGHT = 10
 
     for i in range(1, money):
@@ -480,14 +485,16 @@ def draw_stats(surf, money=0):
 
     if player.win:
         fill = 0
-    fill += 0.5
+    fill += 1.05
     outline_rect = pygame.Rect(0, 0, BAR_LENGTH, BAR_HEIGHT)
     fill_rect = pygame.Rect(0, 0, fill, BAR_HEIGHT)
-    col = progress_colors[int(fill / 100)]
+    col = progress_colors[int(fill / 175)]
     rect(surf, col, fill_rect, 0, 4)
     rect(surf, WHITE, outline_rect, 3, 4)
-    screen.blit(tries, (BAR_LENGTH, 0))
-
+    # screen.blit(tries, (BAR_LENGTH, 0))
+    # screen.blit(itcoins, (BAR_LENGTH, 25))
+    screen.blit(tries, (5, 20))
+    screen.blit(itcoins, (5, 40))
 
 def wait_for_key():
     """
@@ -511,6 +518,9 @@ def wait_for_key():
                 if event.key == pygame.K_SPACE:
                     start = True
                     waiting = False
+                    if level == 2:
+                        pygame.quit()
+                        sys.exit()
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
                     sys.exit()
@@ -544,6 +554,7 @@ def resize(img, size=(32, 32)):
 Глобальные переменные
 """
 font = pygame.font.SysFont("lucidaconsole", 20)
+font2 = pygame.font.SysFont("lucidaconsole", 30)
 
 # квадрат - главный игрок
 avatar = pygame.image.load(os.path.join("images", "avatar.png"))  # загрузка изображения игрока
@@ -585,9 +596,8 @@ angle = 0
 level = 0
 
 # списки
+progress_colors = []
 particles = []
-# orbs = []
-win_cubes = []
 
 # инициализация уровня
 levels = ["level_1.csv", "level_2.csv"]
