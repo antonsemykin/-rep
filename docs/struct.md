@@ -1,6 +1,6 @@
 # Структурные модели
 
-```Mermaid
+```mermaid
 classDiagram
     class Player {
         - win: bool
