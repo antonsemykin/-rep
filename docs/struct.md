@@ -2,6 +2,17 @@
 
 ```mermaid
 classDiagram
+    class Player
+    class Draw
+    class Platform
+    class Spike
+    class Coin
+    class Orb
+    class Teleport
+    class TeleportMinus
+    class Trick
+    class End
+
     class Player {
         - win: bool
         - died: bool
@@ -49,21 +60,5 @@ classDiagram
         + init(image, pos, *groups)
     }
 
-    Player "1" --> "*" Platform
-    Player "1" --> "*" Spike
-    Player "1" --> "*" Coin
-    Player "1" --> "*" Orb
-    Player "1" --> "*" Teleport
-    Player "1" --> "*" TeleportMinus
-    Player "1" --> "*" Trick
-    Player "1" --> "1" End
 
-    Draw <|-- Platform
-    Draw <|-- Spike
-    Draw <|-- Coin
-    Draw <|-- Orb
-    Draw <|-- Teleport
-    Draw <|-- TeleportMinus
-    Draw <|-- Trick
-    Draw <|-- End
 ```
