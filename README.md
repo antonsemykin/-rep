@@ -41,3 +41,7 @@
 ## Функциональные модели
 
 [docs/functions.md](docs/functions.md)
+
+## Структурные модели
+
+[docs/struct.md](docs/struct.md)
