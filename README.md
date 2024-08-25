@@ -45,3 +45,7 @@
 ## Структурные модели
 
 [docs/struct.md](docs/struct.md)
+
+## Поведенческие модели
+
+[docs/behavior.md](docs/behavior.md)
