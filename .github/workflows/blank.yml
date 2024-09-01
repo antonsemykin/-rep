@@ -34,5 +34,6 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          
       - name: test1
-        run: python -m unittest test
+        run: python -m unittest test.py
