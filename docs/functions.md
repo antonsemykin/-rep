@@ -39,17 +39,20 @@
 
 
 ## Диаграмма вариантов использования приложения
-
+![image](https://github.com/user-attachments/assets/80c5869d-af22-46a8-bd4d-5c2914eea759)
 
 
 ## Диаграммы активности
 
 
 ### Диаграмма активности: Поворот фигуры
+![image](https://github.com/user-attachments/assets/56a63238-3eb7-4d25-bf20-0354f2e72646)
 
     
 ### Диаграмма активности: Удаление линиии
+![image](https://github.com/user-attachments/assets/9928d3e9-b4c4-4318-839b-68d3c71a2471)
 
     
 ### Диаграмма активности: Просмотр следующей фигуры
+![image](https://github.com/user-attachments/assets/82262500-b835-4765-8277-3f82c2805821)
 

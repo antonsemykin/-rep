@@ -1,5 +1,3 @@
-# Very simple tetris implementation
-#
 # Control keys:
 #       Down - Drop stone faster
 # Left/Right - Move stone
