@@ -28,8 +28,6 @@ jobs:
       # Runs a single command using the runners shell
       - name: setup Python
         run: actions/setup-python@v4
-        with:
-          python-version: "3.10"
 
       # Runs a set of commands using the runners shell
       - name: install dependencies
