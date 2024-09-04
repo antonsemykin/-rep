@@ -1,10 +1,10 @@
-# Control keys:
-#       Down - Drop stone faster
-# Left/Right - Move stone
-#         Up - Rotate Stone clockwise
-#     Escape - Quit game
-#          P - Pause game
-#     Return - Instant drop
+# Клавиши управления:
+# Вниз - Быстрее опускать фигуру
+# Влево / вправо - Перемещать фигуру
+# Вверх - поворачивать фигуру по часовой стрелке
+# Escape - Выйти из игры
+# P - Приостановить игру
+# Return - Мгновенное падение
 
 
 from random import randrange as rand
