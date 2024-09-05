@@ -1,14 +1,228 @@
 import pytest
 
+from tetris import (rotate_clockwise, check_collision, remove_row, join_matrixes,
+                    new_board, colors, tetris_shapes)
+
+
+def test_rotate_clockwise():
+    """
+    Тест поворота фигуры по часовой стрелке.
+    Ожидаем, что вывод будет фигурой, повернутой на 90 градусов по часовой стрелке.
+    """
+    shape = tetris_shapes[0]  # Форма T
+    expected = [
+        [0, 1],
+        [0, 1],
+        [0, 1]
+    ]  # Ожидаемая форма после поворота
+    result = rotate_clockwise(shape)
+    assert result == expected, f"Ожидалось {expected}, получено {result}"
+
+
+def test_check_collision_no_collision():
+    """
+    Тест обнаружения столкновения без столкновения.
+    Тест проверяет фигуру, расположенную так, что она не сталкивается с доской.
+    """
+    board = new_board()
+    shape = tetris_shapes[1]  # Форма квадрата
+    offset = (0, 0)
+    result = check_collision(board, shape, offset)
+    assert result is False, "Обнаружено столкновение, когда его не должно быть."
+
+
+def test_check_collision_with_collision():
+    """
+    Тест обнаружения столкновения, где происходит столкновение.
+    Фигура расположена так, что она будет пересекаться с заполненной частью доски.
+    """
+    board = new_board()
+    board[0][0] = 1  # Симуляция заполненной ячейки
+    shape = tetris_shapes[1]
+    offset = (0, 0)
+    result = check_collision(board, shape, offset)
+    assert result is True, "Не обнаружено столкновения, когда оно должно быть."
+
+
+def test_remove_row():
+    """
+    Тест функции удаления ряда.
+    Проверяем, удаляется ли полный ряд и добавляется ли новый пустой ряд сверху.
+    """
+    board = new_board()
+    board[20] = [1] * 10  # Заполнение последнего ряда
+    new_board_after_removal = remove_row(board, 20)
+
+    # Последний ряд должен быть пустым, а новый пустой ряд должен быть сверху
+    expected_board = [[0] * 10] + [[0] * 10 for _ in range(21)]
+    assert new_board_after_removal == expected_board, "Удаление ряда не сработало должным образом."
+
+
+def test_join_matrixes():
+    """
+    Тест объединения двух матриц (доски и фигуры).
+    Убедимся, что фигура корректно объединяется с доской.
+    """
+    board = new_board()
+    shape = [[1, 1], [1, 1]]  # 2x2 квадрат
+    offset = (0, 0)
+    result = join_matrixes(board, shape, offset)
+
+    # В левом верхнем углу должна быть заполненная область после объединения
+    expected_board = [
+        [1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+    ] + [[0] * 10 for _ in range(20)]
+    
+    assert result == expected_board, "Объединение матриц не сработало должным образом."
+
+
+def test_new_board():
+    """
+    Тест создания новой доски.
+    Она должна быть заполнена нулями и иметь дополнительный заполненный ряд внизу.
+    """
+    result = new_board()
+    expected_shape = [[0] * 10 for _ in range(22)]
+    expected_shape.append([1] * 10)  # Нижний ряд заполнен единицами
+    
+    assert result == expected_shape, "Новая доска не была создана должным образом."
+
+
+###################################################################################
+
+def test_create_new_piece():
+    """
+    Тест создания новой фигуры.
+    Убедимся, что создаётся фигура одного из доступных типов.
+    """
+    piece = create_new_piece()
+    assert piece in tetris_shapes, "Созданная фигура не была одной из допустимых форм."
+
+
+def test_save_board_state():
+    """
+    Тест сохранения состояния доски.
+    Убедимся, что состояние доски сохраняется правильно.
+    """
+    board = new_board()
+    board[21] = [1] * 10  # Заполнение ряда
+    saved_state = save_board_state(board)
+    assert saved_state == board, "Состояние доски не было сохранено правильно."
+
+
+def test_remove_multiple_rows():
+    """
+    Тест удаления нескольких полных рядов.
+    Убедимся, что функции корректно удаляются несколько рядов и новый пустой ряд добавляется сверху.
+    """
+    board = new_board()
+    board[20] = [1] * 10  # Первый полный ряд
+    board[19] = [1] * 10  # Второй полный ряд
+    new_board_after_removal = remove_row(board, 20)  # Удаляем ряд 20, потом обновим для второго
+    new_board_after_removal = remove_row(new_board_after_removal, 19)
+
+    # Ожидаем, что оба ряда будут удалены, а сверху будет два пустых ряда
+    expected_board = [[0] * 10 for _ in range(20)] + [[1] * 10]
+    assert new_board_after_removal == expected_board, "Удаление нескольких рядов не сработало должным образом."
+
+
+def test_successful_rotation():
+    """
+    Тест успешного вращения фигуры.
+    Убедимся, что фигура вращается корректно на пустой доске.
+    """
+    shape = tetris_shapes[0]  # Форма T
+    initial_shape = shape
+    for _ in range(4):  # Повернём фигуру 4 раза
+        shape = rotate_clockwise(shape)
+    assert shape == initial_shape, "Фигура не вернулась к исходному состоянию после 4 поворотов."
+
+
+def test_invalid_initial_position():
+    """
+    Тест на неправильные начальные позиции фигуры.
+    Убедимся, что позиция фигуры не выходит за пределы доски.
+    """
+    board = new_board()
+    shape = tetris_shapes[0]
+    offset = (-1, 0)  # Неправильная позиция
+    result = check_collision(board, shape, offset)
+    assert result is True, "Некорректная начальная позиция фигуры не вызвала обнаружение столкновения."
+
+
+# Существующие тесты
+def test_rotate_clockwise():
+    shape = tetris_shapes[0]  # Форма T
+    expected = [
+        [0, 1],
+        [0, 1],
+        [0, 1]
+    ]
+    result = rotate_clockwise(shape)
+    assert result == expected, f"Ожидалось {expected}, получено {result}"
+
+
+def test_check_collision_no_collision():
+    board = new_board()
+    shape = tetris_shapes[1]  # Форма квадрата
+    offset = (0, 0)
+    result = check_collision(board, shape, offset)
+    assert result is False, "Обнаружено столкновение, когда его не должно быть."
+
+
+def test_check_collision_with_collision():
+    board = new_board()
+    board[0][0] = 1  # Симуляция заполненной ячейки
+    shape = tetris_shapes[1]
+    offset = (0, 0)
+    result = check_collision(board, shape, offset)
+    assert result is True, "Не обнаружено столкновения, когда оно должно быть."
+
+
+def test_remove_row():
+    board = new_board()
+    board[20] = [1] * 10  # Заполнение последнего ряда
+    new_board_after_removal = remove_row(board, 20)
+
+    expected_board = [[0] * 10] + [[0] * 10 for _ in range(21)]
+    assert new_board_after_removal == expected_board, "Удаление ряда не сработало должным образом."
+
+
+def test_join_matrixes():
+    board = new_board()
+    shape = [[1, 1], [1, 1]]  # 2x2 квадрат
+    offset = (0, 0)
+    result = join_matrixes(board, shape, offset)
+
+    expected_board = [
+        [1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+    ] + [[0] * 10 for _ in range(20)]
+    
+    assert result == expected_board, "Объединение матриц не сработало должным образом."
+
+
+def test_new_board():
+    result = new_board()
+    expected_shape = [[0] * 10 for _ in range(22)]
+    expected_shape.append([1] * 10)  # Нижний ряд заполнен единицами
+    
+    assert result == expected_shape, "Новая доска не была создана должным образом."
+
+
+
+###################################################################################
+
 def inc(x):
     return x + 1
 
 
 def test_answer():
-    assert inc(3) == 5
+    assert inc(3) == 4
 
 
-    
+
 
 def test_move_piece_down():
     """
