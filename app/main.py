@@ -1,11 +1,15 @@
-# Клавиши управления:
-# Вниз - Быстрее опускать фигуру
-# Влево / вправо - Перемещать фигуру
-# Вверх - поворачивать фигуру по часовой стрелке
-# Escape - Выйти из игры
-# P - Приостановить игру
-# Return - Мгновенное падение
+#!/usr/bin/env python3
+#-*- coding: utf-8 -*-
 
+# Very simple tetris implementation
+#
+# Control keys:
+#       Down - Drop stone faster
+# Left/Right - Move stone
+#         Up - Rotate Stone clockwise
+#     Escape - Quit game
+#          P - Pause game
+#     Return - Instant drop
 
 from random import randrange as rand
 import pygame, sys
@@ -77,6 +81,7 @@ def join_matrixes(mat1, mat2, mat2_off):
     for cy, row in enumerate(mat2):
         for cx, val in enumerate(row):
             mat1[cy+off_y-1 ][cx+off_x] += val
+            # print(mat1)
     return mat1
 
 def new_board():
