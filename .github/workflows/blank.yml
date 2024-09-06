@@ -23,6 +23,7 @@ jobs:
       run: |
         sudo apt install pip
         pip install pytest
+        pip install pygame
 
     - name: Test with pytest
       run: |
