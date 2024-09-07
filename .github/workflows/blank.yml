@@ -41,9 +41,7 @@ jobs:
       run: |
         echo "Coveralls repo token is set"
 
-    group :development do
-      gem 'coveralls', require: false
-    end
+   
 
 
     - name: Run tests and send coverage report to Coveralls
