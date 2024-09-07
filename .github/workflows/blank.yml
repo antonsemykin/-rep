@@ -26,32 +26,6 @@ jobs:
         pip install pygame
 
 
-
-    - name: Install dependencies
-      run: |
-       sudo apt-get update
-       sudo apt-get install -y ruby-full
-       gem install bundler
-       bundle install
-
-    - name: Set up Coveralls token
-      env:
-        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-      run: |
-        echo "Coveralls repo token is set"
-
-   
-
-
-    - name: Run tests and send coverage report to Coveralls
-      env:
-        CI: true
-        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-      run: |
-        bundle exec rspec
-        bundle exec coveralls --verbose
-
-
     - name: Coveralls GitHub Action
       uses: coverallsapp/github-action@v2.3.0
     
