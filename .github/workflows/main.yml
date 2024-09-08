@@ -1,10 +1,4 @@
-
-
-
 name: Coveralls
-
-COVERALLS_REPO_TOKEN=6NXxbiyOOwfxGHGJyI24hIgsMQbshaa6g
-
 
 on:
   push
