@@ -54,4 +54,4 @@ Tetris — это классическая арканоидная игра, в �
 [docs/behavior.md](docs/behavior.md)
 
 ## Оценка покрытия тестами Coveralls
-[![Coverage Status](https://coveralls.io/repos/github/antonsemykin/-rep/badge.svg?branch=main)](https://coveralls.io/github/antonsemykin/-rep?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/antonsemykin/-rep/badge.png?branch=main)](https://coveralls.io/github/antonsemykin/-rep?branch=main)
