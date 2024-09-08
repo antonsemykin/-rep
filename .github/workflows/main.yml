@@ -24,7 +24,7 @@ jobs:
       
       - name: Run tests
         run: |
-           coverage run -m pytest
+           coverage run -m pytest app/test.py
            pytest --cov=-rep app/test.py
           
       - name: Coveralls
