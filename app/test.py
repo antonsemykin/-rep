@@ -7,6 +7,73 @@ from main import TetrisApp
 t = TetrisApp()
 
 
+def test_remove_row():
+    """
+    Тест функции удаления ряда.
+    Проверяем, удаляется ли полный ряд и добавляется ли новый пустой ряд сверху.
+    """
+    board = new_board()
+    board[21] = [1] * 10  
+    new_board_after_removal = remove_row(board, 21)
+
+    
+    expected_board = new_board()   
+    assert new_board_after_removal == expected_board, "Удаление ряда не сработало должным образом."
+
+def test_remove_multiple_rows():
+    """
+    Тест удаления нескольких полных рядов.
+    Убедимся, что функцией корректно удаляются несколько рядов и новый пустой ряд добавляется сверху.
+    """
+    board = new_board()
+    board[21] = [1] * 10
+    board[22] = [1] * 10
+    
+    remove_row(board, 20)
+    remove_row(board, 21)
+    
+    
+    expected_board = [[0] * 10 for _ in range(20)] + [[1] * 10]
+    assert board == expected_board, "Удаление нескольких рядов не сработало должным образом."
+
+def test_remove_empty_rows():
+    """
+    Тест удаления одной пустой строки.
+    Убедимся, что функцией корректно удаляется пустой ряд
+    """
+    board = new_board()
+    remove_row(board, 20)
+
+    expected_board = [[0] * 10 for _ in range(21)] + [[1] * 10]
+    assert board == expected_board, "Удаление пустой строки не сработало должным образом."
+
+
+
+
+
+
+def test_four_rotations():
+    """
+    Тест на множественное вращение фигуры.
+    Убедимся, что фигура корректно работает после 4 последовательных вращений.
+    """
+    shape = tetris_shapes[3]  
+    for _ in range(4):  
+        shape = rotate_clockwise(shape)
+    expected_shape = tetris_shapes[3]
+    assert shape == expected_shape, "Фигура не вернулась к исходному состоянию после 4 поворотов."
+
+def test_two_rotations():
+    """
+    Тест на множественное вращение фигуры.
+    Убедимся, что симметричная фигура корректно работает после 2 последовательных вращений.
+    """
+    shape = tetris_shapes[2]  
+    for _ in range(2):  
+        shape = rotate_clockwise(shape)
+    expected_shape = tetris_shapes[2]
+    assert shape == expected_shape, "Симметричная фигура не вернулась к исходному состоянию после 2 поворотов."
+
 def test_rotate_clockwise():
     """
     Тест поворота фигуры по часовой стрелке.
@@ -22,18 +89,8 @@ def test_rotate_clockwise():
     assert result == expected, f"Ожидалось {expected}, получено {result}"
 
 
-def test_remove_row():
-    """
-    Тест функции удаления ряда.
-    Проверяем, удаляется ли полный ряд и добавляется ли новый пустой ряд сверху.
-    """
-    board = new_board()
-    board[21] = [1] * 10  
-    new_board_after_removal = remove_row(board, 21)
 
-    
-    expected_board = new_board()   
-    assert new_board_after_removal == expected_board, "Удаление ряда не сработало должным образом."
+
 
 
 def test_join_matrixes():
@@ -55,47 +112,35 @@ def test_join_matrixes():
     
     assert result == expected_board, "Объединение матриц не сработало должным образом."
 
-def test_remove_multiple_rows():
+def test_empty_matrixes():
     """
-    Тест удаления нескольких полных рядов.
-    Убедимся, что функции корректно удаляются несколько рядов и новый пустой ряд добавляется сверху.
+    Тест объединения двух пустых матриц (доски и фигуры).
+    Убедимся, что пустая фигура корректно объединяется с пустой доской.
+    """
+    board = [[0] * 10 for _ in range (23)]
+    shape = [[0, 0],
+             [0, 0]]
+    offset = (0, 1)
+    result = join_matrixes(board, shape, offset)
+
+    expected_board = [[0] * 10 for _ in range (23)]
+    assert expected_board == result, "Объединение пустых матриц не сработало должным образом."
+
+def test_big_matrixes():
+    """
+    Тест объединения двух пустых матриц (доски и фигуры).
+    Убедимся, что пустая фигура корректно объединяется с пустой доской.
     """
     board = new_board()
-    board[21] = [1] * 10
-    board[22] = [1] * 10
-    
-    remove_row(board, 20)
-    remove_row(board, 21)
-    
-    
-    expected_board = [[0] * 10 for _ in range(20)] + [[1] * 10]
-    assert board == expected_board, "Удаление нескольких рядов не сработало должным образом."
+    shape = [[0, 0], [0, 0]] #[[1] * 10 for _ in range (23)]
+    offset = (0, 1)
+    result = join_matrixes(board, shape, offset)
+
+    expected_board = new_board()
+    assert expected_board == result, f"Объединение матриц с большой фигурой не сработало должным образом."
 
 
-def test_successful_rotation():
-    """
-    Тест успешного вращения фигуры.
-    Убедимся, что фигура вращается корректно на пустой доске.
-    """
-    shape = tetris_shapes[0]  
-    initial_shape = shape
-    for _ in range(4):  
-        shape = rotate_clockwise(shape)
-    assert shape == initial_shape, "Фигура не вернулась к исходному состоянию после 4 поворотов."
 
-
-def test_multiple_rotation():
-    """
-    Тест на множественное вращение фигуры.
-    Убедимся, что фигура корректно работает после нескольких последовательных вращений.
-    """
-    shape = tetris_shapes[1]  
-    for _ in range(4):  
-        shape = rotate_clockwise(shape)
-    
-    
-    expected_shape = tetris_shapes[1]
-    assert shape == expected_shape, "Фигура не вернулась к исходному состоянию после 4 поворотов."
 
 
 if __name__ == "__main__":

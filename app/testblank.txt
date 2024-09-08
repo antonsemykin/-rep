@@ -1,0 +1,16 @@
+удаление строки
+	test_remove_multiple_rows
+	test_remove_empty_rows
+	test_remove_row
+
+поворот
+	test_rotate_clockwise
+	test_two_rotation
+	test_four_rotation
+	
+объединение матриц
+	test_join_matrixes
+	test_big_matrixes
+	test_empty_matrixes
+
+
