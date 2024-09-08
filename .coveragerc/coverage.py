@@ -1,5 +1,7 @@
 [run]
-source = your_project_name
+source = -rep
 
 [report]
 show_missing = True
+
+COVERALLS_REPO_TOKEN=6NXxbiyOOwfxGHGJyI24hIgsMQbshaa6g
