@@ -21,6 +21,7 @@ jobs:
           pip install coverage coveralls
           pip install pytest-cov
           pip install pytest-xdist
+          pip install pygame
       
       - name: Run tests
         run: |
