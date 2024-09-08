@@ -1,3 +1,4 @@
+[![Coverage Status](https://coveralls.io/repos/github/antonsemykin/-rep/badge.png?branch=main)](https://coveralls.io/github/antonsemykin/-rep?branch=main)
 # Tetris.py
 
 ## Описание игры
@@ -52,6 +53,3 @@ Tetris — это классическая арканоидная игра, в �
 ## Поведенческие модели
 
 [docs/behavior.md](docs/behavior.md)
-
-## Оценка покрытия тестами Coveralls
-[![Coverage Status](https://coveralls.io/repos/github/antonsemykin/-rep/badge.png?branch=main)](https://coveralls.io/github/antonsemykin/-rep?branch=main)
