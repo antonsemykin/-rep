@@ -21,7 +21,7 @@ jobs:
           
       - name: Run tests
         run: |
-          coverage run --source=-rep -m pytest
+          coverage run --source=-rep -m app/test.py
           
       - name: Coveralls
         uses: coverallsapp/github-action@v2.3.0
