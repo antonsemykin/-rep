@@ -22,10 +22,16 @@ jobs:
           pip install pytest-cov
           pip install pytest-xdist
           pip install pygame
+
+      - name: Install coverage
+        run: pip install coverage
+
+      
+
+
       
       - name: Run tests
         run: |
-           coverage run -m pytest app/test.py
            pytest --cov=-rep app/test.py
           
       - name: Coveralls
