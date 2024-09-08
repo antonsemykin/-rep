@@ -3,9 +3,13 @@
 
 name: Coveralls
 
+COVERALLS_REPO_TOKEN=6NXxbiyOOwfxGHGJyI24hIgsMQbshaa6g
+
+
 on:
   push
-repo_token: "6NXxbiyOOwfxGHGJyI24hIgsMQbshaa6g"
+
+
 jobs:
   coveralls:
     runs-on: ubuntu-latest
