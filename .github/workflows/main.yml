@@ -32,7 +32,7 @@ jobs:
       
       - name: Run tests
         run: |
-           pytest --cov=-rep app/test.py
+           coverage run -m pytest app/test.py
           
       - name: Coveralls
         uses: coverallsapp/github-action@v2.3.0
