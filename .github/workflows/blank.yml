@@ -25,6 +25,8 @@ jobs:
         pip install pytest
         pip install pygame
 
+
+
     - name: Test with pytest
       run: |
         python3 -m pytest app/test.py 
