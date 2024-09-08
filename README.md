@@ -1,4 +1,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/antonsemykin/-rep/badge.png?branch=main)](https://coveralls.io/github/antonsemykin/-rep?branch=main)
+
+
+
 # Tetris.py
 
 ## Описание игры
